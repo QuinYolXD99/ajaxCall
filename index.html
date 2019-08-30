@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Search</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <style>
+        .form-control-borderless {
+            border-radius: 40px !important;
+        }
+
+        .form-control-borderless::placeholder {
+            color: grey;
+            font-size: 16px;
+        }
+
+        .form-control-borderless:hover,
+        .form-control-borderless:active,
+        .form-control-borderless:focus {
+            /* border: none; */
+            outline: none;
+            box-shadow: none;
+        }
+
+        th {
+            color: white;
+            font-weight: bold;
+        }
+
+        button {
+            margin-left: 10px;
+            height: 46px !important;
+            border-radius: 40px !important;
+            width: 120px;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <div class="container">
+        <br>
+        <div class="row justify-content-center">
+            <div class="col-12 col-md-10 col-lg-8">
+                <div class="card-body row no-gutters align-items-center">
+                    <div class="col-auto">
+                        <i class="fas fa-search h4 text-body"></i>
+                    </div>
+                    <div class="col">
+                        <input id="search" class="form-control form-control-lg form-control-borderless" type="search"
+                            placeholder="Search Country Name or keywords">
+                    </div>
+                    <div class="col-auto">
+                        <button class="btn btn-md btn-success" id="btnSearch" type="button">Search</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br><br>
+        <div class="row">
+            <span id="result"></span>
+            <table class="table table-hover table-border">
+                <thead>
+                    <tr class="bg-success ">
+                        <th>Name</th>
+                        <th>Flag</th>
+                        <th>Code</th>
+                        <th>Population</th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+        </div>
+        <center><img src="https://cdn.dribbble.com/users/1554526/screenshots/3399669/no_results_found.png" alt=""
+                id="noresult"></center>
+    </div>
+    <script>
+
+        function emptyTable() {
+            $("tbody").empty();
+        }
+
+        function addRow(name, flag, code, population) {
+            var tr = $("<tr>")
+            var img = $("<img>", { src: flag, height: "20px" })
+            $("<td>").text(name).appendTo($(tr))
+            $("<td>").append(img).appendTo($(tr))
+            $("<td>").text(code).appendTo($(tr))
+            $("<td>").text(population).appendTo($(tr))
+            $("tbody").append($(tr))
+        }
+    </script>
+    <script src="controller.js"></script>
+
+</body>
+
+</html>
